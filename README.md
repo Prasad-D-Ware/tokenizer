@@ -2,6 +2,20 @@
 
 A web-based text tokenization tool that implements a custom character-position-frequency encoding scheme. This project demonstrates how tokenization works in natural language processing by creating a visual interface to encode and decode text using a custom algorithm.
 
+## 🌐 Live Demo
+
+**[Try the Custom Tokenizer →](https://tokenizer-zeta.vercel.app/)**
+
+## 📸 Screenshots
+
+### Main Tokenizer Interface
+![Custom Tokenizer Main Interface](https://github.com/user-attachments/assets/fa37d0d5-b540-4a17-940a-ac240fa6bedf)
+*The main interface showing real-time text tokenization with the custom encoding formula*
+
+### Token Mapping Decoder
+![Token Mapping Decoder](https://github.com/user-attachments/assets/fea40b6c-d3a6-4952-b869-5a6cecd4a656)
+*Detailed view of token mappings showing character codes, positions, and frequencies*
+
 ## 🔧 How It Works
 
 The tokenizer uses a unique encoding formula:
