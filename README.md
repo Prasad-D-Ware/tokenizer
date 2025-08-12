@@ -1,70 +1,121 @@
-# React + TypeScript + Vite
+# Custom Tokenizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based text tokenization tool that implements a custom character-position-frequency encoding scheme. This project demonstrates how tokenization works in natural language processing by creating a visual interface to encode and decode text using a custom algorithm.
 
-Currently, two official plugins are available:
+## 🔧 How It Works
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The tokenizer uses a unique encoding formula:
+```
+token = char_code-position-frequency
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Where:
+- **char_code**: The numerical code assigned to each character (based on a predefined charset)
+- **position**: The zero-based position of the character in the input text
+- **frequency**: How many times this character appears in the entire input text
+- **Separator**: The `-` character is replaced with `9` in the final token output
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Example
+For the input text "hello":
+- 'h' at position 0 appears 1 time → encoded as a token like `479091`
+- 'e' at position 1 appears 1 time → encoded as a token like `579191`
+- And so on...
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Features
+
+- **Real-time Tokenization**: See tokens generated as you type
+- **Visual Mapping**: View detailed breakdown of each token
+- **Character Support**: Handles letters, numbers, special characters, and whitespace
+- **Interactive Interface**: Clean, modern UI with responsive design
+- **Token Count**: Live display of total token count
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 19 with TypeScript
+- **Styling**: TailwindCSS with custom animations
+- **UI Components**: Radix UI primitives
+- **Build Tool**: Vite
+- **Package Manager**: Bun
+
+## 📦 Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd custom-tokenizer
+   ```
+
+2. Install dependencies:
+   ```bash
+   bun install
+   ```
+
+3. Start the development server:
+   ```bash
+   bun run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## 🎮 Usage
+
+1. **Enter Text**: Type or paste any text into the input area
+2. **View Tokens**: See the generated tokens in real-time in the output panel
+3. **Explore Mappings**: Click "Get Input Mappings" to see detailed breakdown of each token
+4. **Analyze**: Review character codes, positions, and frequencies for each character
+
+## 📁 Project Structure
+
 ```
-# tokenizer
+src/
+├── components/
+│   ├── text-to-tokens.tsx    # Main tokenizer interface
+│   ├── mapping-decoder.tsx   # Token mapping visualization
+│   └── ui/                   # Reusable UI components
+├── utils/
+│   └── tokenizer.ts          # Core tokenization logic
+├── App.tsx                   # Main application component
+└── main.tsx                  # Application entry point
+```
+
+## 🔍 Character Set
+
+The tokenizer supports a comprehensive character set including:
+- Uppercase letters (A-Z)
+- Lowercase letters (a-z)
+- Numbers (0-9)
+- Special characters and punctuation
+- Whitespace characters (space, newline, tab, carriage return)
+
+## 🧪 Development
+
+### Available Scripts
+
+- `bun run dev` - Start development server
+- `bun run build` - Build for production
+- `bun run preview` - Preview production build
+- `bun run lint` - Run ESLint
+
+### Building for Production
+
+```bash
+bun run build
+```
+
+The built files will be in the `dist/` directory.
+
+## 🎯 Educational Purpose
+
+This project is part of a GenAI bootcamp and serves as an educational tool to understand:
+- How tokenization works in NLP and AI models
+- Custom encoding schemes
+- Character-level text processing
+- Frontend development with modern React
+
+## 🤝 Contributing
+
+This is a learning project. Feel free to fork and experiment with different tokenization strategies!
+
+## 📄 License
+
+This project is for educational purposes. Feel free to use and modify as needed for learning.
